@@ -15,7 +15,7 @@ function selectElement(e) {
     } else if (e.target.innerText === '=') {
         secondNum = input
         input = ''
-        calculate(firstNum, secondNum, symbol)
+        operate(firstNum, secondNum, symbol)
     } else {
         input += e.target.innerText
     }
@@ -23,7 +23,7 @@ function selectElement(e) {
 }
 
 //evaluate expression once user has entered both numbers and operation and pressed equals
-function calculate(num1, num2, operation) {
+function operate(num1, num2, operation) {
     if (operation === '+') {
         displayResult.innerText += add(+num1, +num2)
     } else if (operation === '-') {
