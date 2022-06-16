@@ -15,7 +15,7 @@ function selectElement(e) {
     } else if (e.target.innerText === '=') {
         secondNum = input
         input = ''
-        console.log(calculate(firstNum, secondNum, symbol))
+        calculate(firstNum, secondNum, symbol)
     } else {
         input += e.target.innerText
     }
@@ -25,12 +25,18 @@ function selectElement(e) {
 //evaluate expression once user has entered both numbers and operation and pressed equals
 function calculate(num1, num2, operation) {
     if (operation === '+') {
-        return +num1 + +num2
+        displayResult.innerText += add(+num1, +num2)
     } else if (operation === '-') {
-        return +num1 - +num2
+        displayResult.innerText += subtract(num1, num2)
     } else if (operation === 'x') {
-        return +num1 * +num2
+        displayResult.innerText += multiply(num1, num2)
     } else if (operation === '/') {
-        return +num1 / +num2
+        displayResult.innerText += divide(num1, num2)
     }
 }
+
+//Operation Functions
+const add = (a, b) => a + b
+const subtract = (a, b) => a - b
+const multiply = (a, b) => a * b
+const divide = (a, b) => a / b
