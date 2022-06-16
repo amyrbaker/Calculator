@@ -1,11 +1,13 @@
 //add listeners to buttons to collect user input
 const buttons = document.querySelectorAll('.key')
 buttons.forEach(button => button.addEventListener('click', selectElement))
+const displayResult = document.querySelector('#solution')
 
 //store button clicks in string and variables to create expression
 let input = ''
 let firstNum, secondNum, symbol
 function selectElement(e) {
+    displayResult.innerText += e.target.innerText
     if ('+-x/'.includes(e.target.innerText)) {
         firstNum = input
         input = ''
