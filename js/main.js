@@ -14,12 +14,14 @@ function selectElement(e) {
         firstNum = input
         input = ''
         symbol = pressed
+        console.log('first')
     } else if ('+-x/'.includes(pressed) && symbol) {
         secondNum = input
         firstNum = operate(firstNum, secondNum, symbol)
         symbol = pressed
         secondNum = ''
         input = ''
+        console.log('second')
     } else if (pressed === '=') {
         secondNum = input
         input = ''
@@ -27,6 +29,7 @@ function selectElement(e) {
     } else {
         input += pressed
     }
+    console.log(firstNum, symbol, secondNum)
     return firstNum, secondNum, symbol
 }
 
@@ -34,12 +37,16 @@ function selectElement(e) {
 function operate(num1, num2, operation) {
     if (operation === '+') {
         displayResult.innerText = add(+num1, +num2)
+        return add(+num1, +num2)
     } else if (operation === '-') {
         displayResult.innerText = subtract(num1, num2)
+        return subtract(num1, num2)
     } else if (operation === 'x') {
         displayResult.innerText = multiply(num1, num2)
+        return multiply(num1, num2)
     } else if (operation === '/') {
         displayResult.innerText = divide(num1, num2)
+        return divide(num1, num2)
     }
 }
 
