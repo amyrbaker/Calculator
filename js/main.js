@@ -1,23 +1,31 @@
 //add listeners to buttons to collect user input
 const buttons = document.querySelectorAll('.key')
 buttons.forEach(button => button.addEventListener('click', selectElement))
-const displayResult = document.querySelector('#solution')
+const displayInput = document.querySelector('#input')
+const displayResult = document.querySelector('#result')
 
 //store button clicks in string and variables to create expression
 let input = ''
 let firstNum, secondNum, symbol
 function selectElement(e) {
-    displayResult.innerText += e.target.innerText
-    if ('+-x/'.includes(e.target.innerText)) {
+    let pressed = e.target.innerText
+    displayInput.innerText += pressed
+    if ('+-x/'.includes(pressed) && !symbol) {
         firstNum = input
         input = ''
-        symbol = e.target.innerText
-    } else if (e.target.innerText === '=') {
+        symbol = pressed
+    } else if ('+-x/'.includes(pressed) && symbol) {
+        secondNum = input
+        firstNum = operate(firstNum, secondNum, symbol)
+        symbol = pressed
+        secondNum = ''
+        input = ''
+    } else if (pressed === '=') {
         secondNum = input
         input = ''
         operate(firstNum, secondNum, symbol)
     } else {
-        input += e.target.innerText
+        input += pressed
     }
     return firstNum, secondNum, symbol
 }
@@ -25,13 +33,13 @@ function selectElement(e) {
 //evaluate expression once user has entered both numbers and operation and pressed equals
 function operate(num1, num2, operation) {
     if (operation === '+') {
-        displayResult.innerText += add(+num1, +num2)
+        displayResult.innerText = add(+num1, +num2)
     } else if (operation === '-') {
-        displayResult.innerText += subtract(num1, num2)
+        displayResult.innerText = subtract(num1, num2)
     } else if (operation === 'x') {
-        displayResult.innerText += multiply(num1, num2)
+        displayResult.innerText = multiply(num1, num2)
     } else if (operation === '/') {
-        displayResult.innerText += divide(num1, num2)
+        displayResult.innerText = divide(num1, num2)
     }
 }
 
