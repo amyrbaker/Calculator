@@ -9,13 +9,11 @@ let input = ''
 let firstNum, secondNum, symbol
 function selectElement(e) {
     let pressed = e.target.innerText
-    console.log(input, symbol)
     if ('+-x/'.includes(pressed) && !symbol) {
         displayInput.innerText += pressed
         firstNum = input
         input = ''
         symbol = pressed
-        console.log('first')
     } else if ('+-x/'.includes(pressed) && symbol) {
         displayInput.innerText += pressed
         secondNum = input
@@ -23,7 +21,6 @@ function selectElement(e) {
         symbol = pressed
         secondNum = ''
         input = ''
-        console.log('second')
     } else if (pressed === '=') {
         if (firstNum && symbol && input) {
             displayInput.innerText += pressed
@@ -35,7 +32,6 @@ function selectElement(e) {
         displayInput.innerText += pressed
         input += pressed
     }
-    console.log(firstNum, symbol, secondNum)
     return firstNum, secondNum, symbol
 }
 
@@ -61,3 +57,9 @@ const add = (a, b) => (a + b) % 1 === 0 ? a + b : (a + b).toFixed(10)
 const subtract = (a, b) => (a - b) % 1 === 0 ? a - b : (a - b).toFixed(10)
 const multiply = (a, b) => (a * b) % 1 === 0 ? a * b : (a * b).toFixed(10)
 const divide = (a, b) => (a / b) % 1 === 0 ? a / b : (a / b).toFixed(10)
+
+
+//Todo:
+//Make it so user can't enter operation first, except for negative
+//make it so user can't enter two operations in a row
+//rest of odin project steps
