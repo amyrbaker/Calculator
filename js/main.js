@@ -9,6 +9,7 @@ let input = ''
 let firstNum, secondNum, symbol
 function selectElement(e) {
     let pressed = e.target.innerText
+    console.log(input, symbol)
     if ('+-x/'.includes(pressed) && !symbol) {
         displayInput.innerText += pressed
         firstNum = input
@@ -56,7 +57,7 @@ function operate(num1, num2, operation) {
 }
 
 //Operation Functions
-const add = (a, b) => (a + b).toFixed(10)
-const subtract = (a, b) => (a - b).toFixed(10)
-const multiply = (a, b) => (a * b).toFixed(10)
-const divide = (a, b) => (a / b).toFixed(10)
+const add = (a, b) => (a + b) % 1 === 0 ? a + b : (a + b).toFixed(10)
+const subtract = (a, b) => (a - b) % 1 === 0 ? a - b : (a - b).toFixed(10)
+const multiply = (a, b) => (a * b) % 1 === 0 ? a * b : (a * b).toFixed(10)
+const divide = (a, b) => (a / b) % 1 === 0 ? a / b : (a / b).toFixed(10)
