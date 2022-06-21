@@ -50,6 +50,11 @@ function selectElement(e) {
         symbol = ''
         displayInput.innerText = ''
         displayResult.innerText = ''
+    } else if (pressed === '.') {
+        if (!input.includes('.')) {
+            displayInput.innerText += pressed
+            input += pressed
+        }
     } else {
         displayInput.innerText += pressed
         input += pressed
