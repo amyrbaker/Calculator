@@ -105,3 +105,4 @@ const factorial = (a) => [...new Array(a).keys()].map(e => e + 1).reduce((a, c) 
 
 //Todo:
 //figure out how to make clear work to clear the symbol
+//figure out how to make clear to work for second number
