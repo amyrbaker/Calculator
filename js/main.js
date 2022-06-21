@@ -17,12 +17,17 @@ function selectElement(e) {
             symbol = pressed
         }
     } else if ('+-x/^'.includes(pressed) && symbol) {
-        displayInput.innerText += pressed
-        secondNum = input
-        firstNum = operate(firstNum, secondNum, symbol)
-        symbol = pressed
-        secondNum = ''
-        input = ''
+        if (input) {
+            displayInput.innerText += pressed
+            secondNum = input
+            firstNum = operate(firstNum, secondNum, symbol)
+            symbol = pressed
+            secondNum = ''
+            input = ''
+        } else if (pressed === '-') {
+            displayInput.innerText += pressed
+            input += pressed
+        }
     } else if (pressed === '!') {
         if (input) {
             displayInput.innerText += pressed
@@ -79,6 +84,6 @@ const factorial = (a) => [...new Array(a).keys()].map(e => e + 1).reduce((a, c) 
 
 
 //Todo:
-//Make it so user can't enter operation first, except for negative
+//make it so user can make second number negative
 //make it so user can't enter two operations in a row
 //rest of odin project steps
