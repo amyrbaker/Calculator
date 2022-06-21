@@ -69,10 +69,11 @@ function operate(num1, num2, operation) {
         displayResult.innerText = multiply(num1, num2)
         return multiply(num1, num2)
     } else if (operation === '/') {
-        
+        if (+num2 === 0) displayResult.innerText = 'undefined'
+        else {
             displayResult.innerText = divide(num1, num2)
             return divide(num1, num2)
-        
+        }
     } else if (operation === '^') {
         displayResult.innerText = exponent(num1, num2)
         return exponent(num1, num2)
