@@ -43,6 +43,13 @@ function selectElement(e) {
             input = ''
             operate(firstNum, secondNum, symbol)
         } 
+    } else if (pressed === 'AC') {
+        input = ''
+        firstNum = ''
+        secondNum = ''
+        symbol = ''
+        displayInput.innerText = ''
+        displayResult.innerText = ''
     } else {
         displayInput.innerText += pressed
         input += pressed
@@ -62,8 +69,10 @@ function operate(num1, num2, operation) {
         displayResult.innerText = multiply(num1, num2)
         return multiply(num1, num2)
     } else if (operation === '/') {
-        displayResult.innerText = divide(num1, num2)
-        return divide(num1, num2)
+        
+            displayResult.innerText = divide(num1, num2)
+            return divide(num1, num2)
+        
     } else if (operation === '^') {
         displayResult.innerText = exponent(num1, num2)
         return exponent(num1, num2)
@@ -84,6 +93,5 @@ const factorial = (a) => [...new Array(a).keys()].map(e => e + 1).reduce((a, c) 
 
 
 //Todo:
-//make it so user can make second number negative
-//make it so user can't enter two operations in a row
+
 //rest of odin project steps
