@@ -8,8 +8,9 @@ const displayResult = document.querySelector('#result')
 let input = ''
 let firstNum, secondNum, symbol
 function selectElement(e) {
+    console.log(`${input}, ${firstNum}, ${secondNum}, ${symbol}`)
     let pressed = e.target.innerText
-    if ('+-x/^'.includes(pressed) && !symbol) {
+    if (('+-x/^'.includes(pressed) && !symbol)) {
         if (pressed === '-' || input) {
             displayInput.innerText += pressed
             firstNum = input
@@ -27,7 +28,7 @@ function selectElement(e) {
         } else if (pressed === '-') {
             displayInput.innerText += pressed
             input += pressed
-        }
+        } 
     } else if (pressed === '!') {
         if (input) {
             displayInput.innerText += pressed
@@ -50,6 +51,11 @@ function selectElement(e) {
         symbol = ''
         displayInput.innerText = ''
         displayResult.innerText = ''
+    } else if (pressed === 'C') {
+        displayInput.innerText = displayInput.innerText.slice(0, displayInput.innerText.length - 1)
+        if (input) {
+            input = displayInput.innerText
+        } 
     } else if (pressed === '.') {
         if (!input.includes('.')) {
             displayInput.innerText += pressed
@@ -68,24 +74,23 @@ function operate(num1, num2, operation) {
         displayResult.innerText = add(+num1, +num2)
         return add(+num1, +num2)
     } else if (operation === '-') {
-        displayResult.innerText = subtract(num1, num2)
-        return subtract(num1, num2)
+        displayResult.innerText = subtract(+num1, +num2)
+        return subtract(+num1, +num2)
     } else if (operation === 'x') {
-        displayResult.innerText = multiply(num1, num2)
-        return multiply(num1, num2)
+        displayResult.innerText = multiply(+num1, +num2)
+        return multiply(+num1, +num2)
     } else if (operation === '/') {
         if (+num2 === 0) displayResult.innerText = 'undefined'
         else {
-            displayResult.innerText = divide(num1, num2)
-            return divide(num1, num2)
+            displayResult.innerText = divide(+num1, +num2)
+            return divide(+num1, +num2)
         }
     } else if (operation === '^') {
-        displayResult.innerText = exponent(num1, num2)
-        return exponent(num1, num2)
+        displayResult.innerText = exponent(+num1, +num2)
+        return exponent(+num1, +num2)
     } else if (operation === '!') {
         displayResult.innerText = factorial(+num1)
-        console.log(factorial(+num1))
-        return factorial(num1)
+        return factorial(+num1)
     }
 }
 
@@ -99,5 +104,4 @@ const factorial = (a) => [...new Array(a).keys()].map(e => e + 1).reduce((a, c) 
 
 
 //Todo:
-
-//rest of odin project steps
+//figure out how to make clear work to clear the symbol
