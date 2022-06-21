@@ -10,10 +10,12 @@ let firstNum, secondNum, symbol
 function selectElement(e) {
     let pressed = e.target.innerText
     if ('+-x/^'.includes(pressed) && !symbol) {
-        displayInput.innerText += pressed
-        firstNum = input
-        input = ''
-        symbol = pressed
+        if (pressed === '-' || input) {
+            displayInput.innerText += pressed
+            firstNum = input
+            input = ''
+            symbol = pressed
+        }
     } else if ('+-x/^'.includes(pressed) && symbol) {
         displayInput.innerText += pressed
         secondNum = input
@@ -22,11 +24,13 @@ function selectElement(e) {
         secondNum = ''
         input = ''
     } else if (pressed === '!') {
-        displayInput.innerText += pressed
-        firstNum = input
-        input = ''
-        symbol = pressed
-        operate(firstNum, '', symbol)
+        if (input) {
+            displayInput.innerText += pressed
+            firstNum = input
+            input = ''
+            symbol = pressed
+            operate(firstNum, '', symbol)
+        }
     } else if (pressed === '=') {
         if (firstNum && symbol && input) {
             displayInput.innerText += pressed
